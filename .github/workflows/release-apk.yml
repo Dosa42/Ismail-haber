@@ -25,6 +25,8 @@ jobs:
         with:
           gradle-version: '9.3.1'
           cache-read-only: false
+      - name: Set up Android command-line tools
+        uses: android-actions/setup-android@v3
       - name: Install the requested Android SDK
         shell: bash
         run: |
@@ -64,6 +66,13 @@ jobs:
             release-output/apk-info.txt
             release-output/output-metadata.json
             release-output/zip-verification.txt
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload Android signing tool for local release signing
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release-signing-tool
+          path: ${{ env.ANDROID_HOME }}/build-tools/36.0.0/lib/apksigner.jar
           if-no-files-found: error
           retention-days: 30
       - name: Upload build log
