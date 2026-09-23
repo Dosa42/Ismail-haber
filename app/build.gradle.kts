@@ -44,7 +44,12 @@ android {
       isCrunchPngs = false
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      signingConfig = signingConfigs.getByName("release")
+      // CI can explicitly request an unsigned release without substituting a debug build.
+      signingConfig = if (providers.gradleProperty("unsignedRelease").orNull == "true") {
+        null
+      } else {
+        signingConfigs.getByName("release")
+      }
     }
     debug { signingConfig = signingConfigs.getByName("debugConfig") }
   }
