@@ -1,0 +1,6 @@
+{
+  "name": "Türkiye Yüzyılı",
+  "description": "Babanıza özel: Güncel siyaset, milli savunma sanayii, teknoloji hamlesi, tarih, Reis'in efsane sözleri & racon editleri ve tek tuşla WhatsApp paylaşımı.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
